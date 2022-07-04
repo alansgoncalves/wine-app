@@ -108,7 +108,6 @@ export const SearchWine = styled.form`
   align-items: center;
   justify-content: center;
   text-align: center;
-  /* display: none; */
 
   input {
     width: 90%;
