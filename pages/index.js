@@ -24,6 +24,8 @@ export async function getStaticProps() {
 
 export default function Home({ data }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [dp, setDp] = useState(false);
+
   const { items = [] } = data;
   return (
     <div>
@@ -35,11 +37,12 @@ export default function Home({ data }) {
         <Link href="/ofertas">Ofertas</Link>
         <Link href="/eventos">Eventos</Link>
         <HeaderImages>
-          <Image src="/images/lupa.png" width={50} height={50} />
+          <Image src="/images/lupa.png" width={50} height={50} onClick={() => setDp(!dp)}/>
           <Image src="/images/user.png" width={50} height={50} />
           <Image src="/images/carrinho.png" width={50} height={50} />
         </HeaderImages>
       </Header>
+      {dp &&
       <SearchWine>
         <input
           type="text"
@@ -48,8 +51,14 @@ export default function Home({ data }) {
             setSearchTerm(event.target.value);
           }}
         />
-        <img src="/images/lupa.png" className="lupa" width={44} height={44} />
+        <img 
+          src="/images/lupa.png" 
+          className="lupa" 
+          width={44} 
+          height={44}
+          />
       </SearchWine>
+      }
       <Container>
         <PriceOpt>
           <Prices />
