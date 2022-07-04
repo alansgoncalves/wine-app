@@ -6,11 +6,13 @@ import {
   FormWine,
   PriceOpt,
   Container,
+  SearchWine,
 } from "../styles/style.js";
 import Image from "next/image";
 import Prices from "../src/components/Prices/Prices";
+import { useState } from "react";
 
-const defaultEndpoint = "https://wine-back-test.herokuapp.com/products/";
+const defaultEndpoint = "https://wine-back-test.herokuapp.com/products?page=1&limit=9";
 
 export async function getStaticProps() {
   const response = await fetch(defaultEndpoint);
@@ -21,6 +23,7 @@ export async function getStaticProps() {
 }
 
 export default function Home({ data }) {
+  const [searchTerm, setSearchTerm] = useState("");
   const { items = [] } = data;
   return (
     <div>
@@ -37,25 +40,44 @@ export default function Home({ data }) {
           <Image src="/images/carrinho.png" width={50} height={50} />
         </HeaderImages>
       </Header>
+      <SearchWine>
+        <input
+          type="text"
+          placeholder="Pesquise"
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+          }}
+        />
+        <img src="/images/lupa.png" className="lupa" width={44} height={44} />
+      </SearchWine>
       <Container>
-      <PriceOpt>
-        <Prices />
-      </PriceOpt>
-      <Form>
-        {items.map((item) => {
-          const { id, image, name, price, priceMember, priceNonMember } = item;
-          return (
-            <FormWine key={id}>
-              <img src={image} width="100px" alt="" />
-              <h4>{name}</h4>
-              <p>{price}</p>
-              <h4>Sócio Wine R${priceMember}</h4>
-              <h4>NÃO SÓCIO R${priceNonMember}</h4>
-                <button>Adicionar</button>
-            </FormWine>
-          );
-        })}
-      </Form>
+        <PriceOpt>
+          <Prices />
+        </PriceOpt>
+        <Form>
+          {items
+            .filter((value) => {
+              if (searchTerm === "") {
+                return value;
+              } else if (
+                value.name.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return value;
+              }
+            })
+            .map((value, key) => {
+              return (
+                <FormWine key={key}>
+                  <img src={value.image} width="100px" alt="" />
+                  <h4>{value.name}</h4>
+                  <p>{value.price}</p>
+                  <h4>Sócio Wine R${value.priceMember}</h4>
+                  <h4>NÃO SÓCIO R${value.priceNonMember}</h4>
+                  <button>Adicionar</button>
+                </FormWine>
+              );
+            })}
+        </Form>
       </Container>
     </div>
   );

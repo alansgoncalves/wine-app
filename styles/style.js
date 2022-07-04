@@ -37,6 +37,7 @@ export const Form = styled.div`
   margin: auto;
   justify-content: space-around;
   width: 70%;
+  margin-top: 59px;
 `
 
 export const FormWine = styled.div`
@@ -81,7 +82,7 @@ export const PriceOpt = styled.div`
   width: 150px;
   background: #F5F5F5;
   margin-left: 66px;
-  margin-top: 80px;
+  margin-top: 178px;
 
   h3 {
     width: 156px;
@@ -91,4 +92,36 @@ export const PriceOpt = styled.div`
 
 export const Container = styled.div`
   display: flex;
+`
+
+export const SearchWine = styled.form`
+  position: absolute;
+  margin-top: 100px;
+  background: #F5F5F5 0 0 no-repeat padding-box;
+  border: 0.5px;
+  border-radius: 5px;
+  box-shadow: 0px 9.73384px 14.6008px rgb(0 0 0 / 10%);
+  min-width: 100%;
+  opacity: 1;
+  align-items: center;
+  height: 89px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* display: none; */
+
+  input {
+    width: 90%;
+    background-color: #fff;
+    border: unset;
+    border-radius: 4px;
+    padding: 15px;
+    height: 44px;
+    margin-top: 16px;
+  }
+
+  img, .lupa {
+    margin-top: 16px;
+    margin-bottom: -18px;
+  }
 `
