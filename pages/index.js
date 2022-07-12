@@ -12,7 +12,7 @@ import Image from "next/image";
 import Prices from "../src/components/Prices/Prices";
 import { useState } from "react";
 
-const defaultEndpoint = "https://wine-back-test.herokuapp.com/products?page=1&limit=9";
+const defaultEndpoint = "https://wine-back-test.herokuapp.com/products/";
 
 export async function getStaticProps() {
   const response = await fetch(defaultEndpoint);
@@ -23,10 +23,23 @@ export async function getStaticProps() {
 }
 
 export default function Home({ data }) {
+  const { items = [] } = data;
   const [searchTerm, setSearchTerm] = useState("");
   const [dp, setDp] = useState(false);
 
-  const { items = [] } = data;
+  const itemsPerPage = 9; //total de intens na página
+  const [currentpage, setCurrentPage] = useState(0) //página de exibição atual
+  
+  const totalItems = data.itemsPerPage; //qtd. total de items da API
+  const pages = Math.ceil(totalItems / itemsPerPage)
+  
+  // lógica para filtrar a lista de produtos baseado na seleção da página
+  const startIndex = currentpage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = items.slice(startIndex, endIndex);
+
+  console.log(data.itemsPerPage)
+
   return (
     <div>
       <Header>
@@ -64,7 +77,7 @@ export default function Home({ data }) {
           <Prices />
         </PriceOpt>
         <Form>
-          {items
+          {items && currentItems
             .filter((value) => {
               if (searchTerm === "") {
                 return value;
@@ -88,6 +101,11 @@ export default function Home({ data }) {
             })}
         </Form>
       </Container>
+      {Array.from(Array(pages), (_item, index) => {
+        return (
+            <button key={index} value={index} onClick={(e) => setCurrentPage(Number(e.target.value))}>{index + 1}</button>
+          )
+      })}
     </div>
   );
 }
