@@ -30,13 +30,15 @@ export default function Home({ data }) {
   const itemsPerPage = 9; //total de intens na página
   const [currentpage, setCurrentPage] = useState(0) //página de exibição atual
   
-  const totalItems = data.itemsPerPage;
+  const totalItems = data.itemsPerPage; //qtd. total de items da API
   const pages = Math.ceil(totalItems / itemsPerPage)
   
   // lógica para filtrar a lista de produtos baseado na seleção da página
   const startIndex = currentpage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = items.slice(startIndex, endIndex);
+
+  console.log(data.itemsPerPage)
 
   return (
     <div>
