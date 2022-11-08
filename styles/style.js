@@ -9,27 +9,31 @@ export const Header = styled.div`
   right: 0%;
   width: 100%;
   box-sizing: border-box;
-  border: 0.5px solid #CCCCCC;
+  border: 0.5px solid #cccccc;
   align-items: center;
   justify-content: space-around;
-  box-shadow: 0px 2px 2px #CCCCCC;
+  box-shadow: 0px 2px 2px #cccccc;
   height: 90px;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
   background-color: #fff;
-  `
+
+  /* @media (max-width: 768px) {
+    background-color: red;
+  } */
+`;
 
 export const HeaderImages = styled.div`
   display: flex;
   justify-content: space-around;
   flex-direction: row;
   width: 18%;
-`
+`;
 
 export const Form = styled.div`
-  background: #F5F5F5;
+  background: #f5f5f5;
   padding: 41px 30px 46px 41px;
   display: flex;
   flex-direction: row;
@@ -38,7 +42,7 @@ export const Form = styled.div`
   justify-content: space-around;
   width: 70%;
   margin-top: 59px;
-`
+`;
 
 export const FormWine = styled.div`
   margin-top: 100px;
@@ -75,12 +79,12 @@ export const FormWine = styled.div`
     font-weight: 700;
     text-align: center;
   }
-`
+`;
 export const PriceOpt = styled.div`
   display: flex;
   flex-direction: column;
   width: 150px;
-  background: #F5F5F5;
+  background: #f5f5f5;
   margin-left: 66px;
   margin-top: 178px;
 
@@ -88,16 +92,16 @@ export const PriceOpt = styled.div`
     width: 156px;
     margin-bottom: 0px;
   }
-`
+`;
 
 export const Container = styled.div`
   display: flex;
-`
+`;
 
 export const SearchWine = styled.form`
   position: absolute;
   margin-top: 100px;
-  background: #F5F5F5 0 0 no-repeat padding-box;
+  background: #f5f5f5 0 0 no-repeat padding-box;
   border: 0.5px;
   border-radius: 5px;
   box-shadow: 0px 9.73384px 14.6008px rgb(0 0 0 / 10%);
@@ -119,8 +123,17 @@ export const SearchWine = styled.form`
     margin-top: 16px;
   }
 
-  img, .lupa {
+  img,
+  .lupa {
     margin-top: 16px;
     margin-bottom: -18px;
   }
-`
+`;
+
+export const Button = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 51px;
+  margin-bottom: 39px;
+`;
